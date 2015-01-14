@@ -18,6 +18,8 @@ gem 'bootstrap-sass', '3.2.0.2'
 gem 'devise'
 #User Authorization
 gem 'pundit'
+#Seed Data
+gem 'faker'
 #Hiding ENV Variables
 gem 'figaro', '1.0'
 # Use Uglifier as compressor for JavaScript assets
