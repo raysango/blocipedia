@@ -16,6 +16,8 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass', '3.2.0.2'
 #User Authentication
 gem 'devise'
+#User Authorization
+gem 'pundit'
 #Hiding ENV Variables
 gem 'figaro', '1.0'
 # Use Uglifier as compressor for JavaScript assets
