@@ -21,6 +21,15 @@ users=User.all
     )
 end
 # Create an admin user
+default = User.new(
+  name: "Raymond Morcos",
+  email: "remongeorge@live.com",
+  password: "password",
+  role: "standard"
+  )
+default.skip_confirmation!
+default.save!
+
 admin = User.new(
   name: "Admin User",
   email: "admin@example.com",

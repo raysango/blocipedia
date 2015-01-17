@@ -5,13 +5,18 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+    authorize @wiki
+    @user = current_user
   end
 
   def edit
+    @user = current_user
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def show
+    @user = current_user
     @wiki = Wiki.find(params[:id])
   end
   

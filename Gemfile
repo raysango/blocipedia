@@ -20,6 +20,8 @@ gem 'devise'
 gem 'pundit'
 #Seed Data
 gem 'faker'
+#CC Authorization
+gem 'stripe'
 #Hiding ENV Variables
 gem 'figaro', '1.0'
 # Use Uglifier as compressor for JavaScript assets
