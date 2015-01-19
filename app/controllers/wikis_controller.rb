@@ -26,7 +26,7 @@ class WikisController < ApplicationController
     authorize @wiki
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki updated"
-      render :show
+      redirect_to @wiki
     else
       flash[:error] = "There was an error updating the Wiki"
       render :edit

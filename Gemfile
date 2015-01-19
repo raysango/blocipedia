@@ -22,6 +22,8 @@ gem 'pundit'
 gem 'faker'
 #CC Authorization
 gem 'stripe'
+#Mark Down
+gem 'redcarpet'
 #Hiding ENV Variables
 gem 'figaro', '1.0'
 # Use Uglifier as compressor for JavaScript assets

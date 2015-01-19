@@ -11,7 +11,7 @@
         <div class="media-body">
           <h4 class="media-heading">
             <% if policy(wiki).index %> 
-            <%= link_to wiki.title, wiki %>
+            <%= link_to (markdown wiki.title), wiki %>
             <%end%>
           </h4>
         </div>
