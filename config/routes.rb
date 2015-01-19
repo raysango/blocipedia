@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+
   resources :charges
 
   resources :wikis
-
+  
   devise_for :users
+
+  devise_scope :user do
+    put 'users/cancel_plan' => 'users#cancel_plan'
+  end
   root to: 'welcome#index'
 
   get 'welcome/about'
