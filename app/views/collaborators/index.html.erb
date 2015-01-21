@@ -1,0 +1,27 @@
+<% if current_user && @collwikis %>
+<% @collwikis.each do |w| %>
+ <% @wiki = Wiki.find(w) %>
+<div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to @wiki.title , wiki_path(@wiki) %> | collaborated with <%= @wiki.user.name %>
+            </h4>
+        </div>
+      </div>
+<%end%>
+<%end%>
+<% if @wikis %>
+<% @wikis.each do |wiki| %>
+<div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to wiki.title , wiki_path(wiki) %>
+            </h4>
+        </div>
+      </div>
+<%end%>
+<%end%>
+            
+
+
+

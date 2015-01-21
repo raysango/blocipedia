@@ -12,6 +12,11 @@
       <li><%= link_to "About", welcome_about_path %></li>
       <li><%= link_to "Home", root_path %> </li>
       <li><%= link_to "Wikis", wikis_path %></li>
+      <% if current_user %>
+      <% if current_user.collaborators.pluck("wiki_id") != [] || current_user.wikis != []%>
+         <li><%= link_to "Your Wikis", wiki_collaborators_path(Wiki.where(id: current_user.collaborators.pluck("wiki_id") )) %></li>
+      <%end%>
+      <%end%>
       <div class = "pull-right user-info" >
         <% if current_user %>
         Hello <%= link_to (current_user.email || current_user.name), edit_user_registration_path %>!

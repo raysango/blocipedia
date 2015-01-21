@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
    rescue_from Pundit::NotAuthorizedError do |exception|
-     redirect_to root_url, alert: exception.message
+     Rails.logger.info ">>>>> exception: #{exception.inspect}"
+     #policy_name = exception.policy.class.to_s.underscore
+     #flash[:error] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+     
+     redirect_to root_url, alert: "You are not authorized to perform this action."
    end
   protected
  
