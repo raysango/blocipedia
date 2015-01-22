@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20150122031534) do
   add_index "collaborators", ["user_id"], name: "index_collaborators_on_user_id"
   add_index "collaborators", ["wiki_id"], name: "index_collaborators_on_wiki_id"
 
-
   create_table "plans", force: true do |t|
     t.string   "title"
     t.decimal  "price"
