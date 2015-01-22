@@ -6,7 +6,8 @@
   <% if current_user %>
   <% if @wiki.user == @user || (@wiki.collaborators.pluck("user_id").include? @user.id )%>
 <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-success' %>
-<%= link_to "Delete Wiki", @wiki, class: 'btn btn-success', method: :delete, data: { confirm: 'Are you sure you want to delete this wiki?' } %>
+    <%= link_to "Delete Wiki", @wiki, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure you want to delete this wiki?' } %>
+    <%= link_to "Share", new_wiki_collaborator_path(@wiki), class: 'btn btn-warning' %>
   <%end%>
   <%end%>
   </div>

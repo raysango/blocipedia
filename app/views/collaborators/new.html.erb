@@ -10,7 +10,7 @@
       <%= f.hidden_field :user_id, :value => u.id %>
       <div class="span3">
         <% if @wiki.collaborators.pluck("user_id").include? u.id %>
-        <% c = Collaborator.where(:user_id => u.id, :wiki_id => @wiki.id) %>
+        <% c = Collaborator.where(:user_id => u.id, :wiki_id => @wiki.id).last %>
         <%= link_to 'Delete collaborator', wiki_collaborator_path(@wiki,c), method: 'delete', :confirm => 'Are you sure?', class: 'btn btn-danger'  %><br>
         <%else %>
           <%= f.submit "Add Collaborator", class: 'btn btn-success' %>
