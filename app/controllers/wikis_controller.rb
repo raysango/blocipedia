@@ -1,4 +1,5 @@
 class WikisController < ApplicationController
+  respond_to :html, :js
   def index
     @user = current_user
     @wikis = Wiki.all
@@ -53,10 +54,11 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     if @wiki.destroy
       flash[:notce] = "Wiki was deleted"
-      redirect_to wikis_path
     else
       flash[:error] = "There was an error deleting the Wiki"
-      render :show
     end
+    respond_with(@wiki) do |format|
+       format.html { redirect_to wikis_path }
+     end
   end
 end

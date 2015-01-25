@@ -15,7 +15,9 @@
 <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
-            <%= link_to wiki.title , wiki_path(wiki) %>
+            <%= content_tag :div, class: 'media', id: "wiki-#{wiki.id}" do %>
+            <%= link_to wiki.title , wiki_path(wiki) %> | <small><%= link_to "Delete", wiki, method: :delete, remote: true, data: { confirm: 'Are you sure you want to delete this wiki?' } %></small>
+            <%end%>
             </h4>
         </div>
       </div>
