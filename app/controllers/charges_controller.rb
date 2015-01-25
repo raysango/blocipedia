@@ -32,7 +32,7 @@ def new
      description: "BigMoney Membership - #{current_user.email}",
      currency: 'usd'
    )
-    current_user.update(role:"premium", plan_id: "2")
+    current_user.update(role:"premium")
     current_user.save!
     flash[:note] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
    redirect_to edit_user_registration_path(current_user) # or wherever

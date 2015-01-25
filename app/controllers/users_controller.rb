@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def cancel_plan
     @user = current_user
     @wikis = @user.wikis
-    @user.update(role:"standard", plan_id: "1")
+    @user.update(role:"standard")
     @wikis.each do |wiki|
       if wiki.private?
         wiki.update(private: "false")

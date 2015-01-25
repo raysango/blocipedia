@@ -1,4 +1,5 @@
 class WikisController < ApplicationController
+  before_action :wiki_find, except: [:new, :create, :index]
   respond_to :html, :js
   def index
     @user = current_user
@@ -14,17 +15,14 @@ class WikisController < ApplicationController
   def edit
     @collaborator = Collaborator.new
     @user = current_user
-    @wiki = Wiki.find(params[:id])
     authorize @wiki
   end
 
   def show
     @user = current_user
-    @wiki = Wiki.find(params[:id])
   end
   
   def update
-    @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki updated"
@@ -33,10 +31,6 @@ class WikisController < ApplicationController
       flash[:error] = "There was an error updating the Wiki"
       render :edit
     end
-  end
-  
-  def wiki_params
-    params.require(:wiki).permit(:title, :body, :private, :user_id)
   end
   
   def create
@@ -51,7 +45,6 @@ class WikisController < ApplicationController
   end
   
   def destroy
-    @wiki = Wiki.find(params[:id])
     if @wiki.destroy
       flash[:notce] = "Wiki was deleted"
     else
@@ -60,5 +53,14 @@ class WikisController < ApplicationController
     respond_with(@wiki) do |format|
        format.html { redirect_to wikis_path }
      end
+  end
+     def wiki_find
+    @wiki = Wiki.find(params[:id])
+  end
+  
+  private
+  
+  def wiki_params
+    params.require(:wiki).permit(:title, :body, :private, :user_id)
   end
 end

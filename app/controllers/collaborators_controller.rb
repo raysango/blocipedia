@@ -1,16 +1,16 @@
 class CollaboratorsController < ApplicationController
+  before_action :wiki_id_find, except: [:index]
+  
+  def wiki_id_find
+    @wiki = Wiki.find(params[:wiki_id])
+  end
+    
   def new
     @users = User.where(role: "premium")
     @collaborator = Collaborator.new
-    @wiki = Wiki.find(params[:wiki_id])
-  end
-  
-  def collaborator_params
-    params.require(:collaborator).permit(:wiki_id, :user_id)
   end
   
   def create
-    @wiki = Wiki.find(params[:wiki_id])
     @collaborator = @wiki.collaborators.build(collaborator_params)
     if @collaborator.save
       flash[:notice] = "Successfully added collaborator."
@@ -23,7 +23,6 @@ class CollaboratorsController < ApplicationController
   
   def destroy
     @collaborator = Collaborator.find(params[:id])
-    @wiki = Wiki.find(params[:wiki_id])
 
     if @collaborator.destroy
       flash[:notice] = "Collaborator was successfully removed."
@@ -43,5 +42,11 @@ class CollaboratorsController < ApplicationController
   end
 
   def show
+  end
+  
+  private
+  
+  def collaborator_params
+    params.require(:collaborator).permit(:wiki_id, :user_id)
   end
 end
